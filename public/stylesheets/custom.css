@@ -88,6 +88,11 @@ a.signup_button {
 	padding: 20px;
 }
 
+/* Signup page */
+div.field, div.actions {
+	margin-bottom: 10px;
+}
+
 /* User show page */
 table.profile {
 	width: 100%;
