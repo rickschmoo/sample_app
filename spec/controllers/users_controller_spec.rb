@@ -41,9 +41,9 @@ describe UsersController do
         
   end
 
-  ###########
-  # NEW test
-  ###########
+  ############################
+  # NEW test - show sign form
+  ############################
   describe "GET 'new'" do
     
     it "should be successful" do
@@ -57,9 +57,14 @@ describe UsersController do
     end
   end
 
-
+  ######################################
+  # NEW test - signup form submission
+  ######################################
   describe "POST 'create'" do
     
+    ########
+    # FAIL
+    ########
     describe "failure" do
       before(:each) do
         @attr = { :name => "", :email => "", :password => "",
@@ -70,7 +75,7 @@ describe UsersController do
         # lambda allows check of User.count
         lambda do
           post :create, :user => @attr
-        # change defers to the Active Record count method
+        # change refers to the Active Record count method -> counts #users in the database
         end.should_not change(User, :count)
       end
       
@@ -83,7 +88,36 @@ describe UsersController do
         post :create, :user => @attr
         response.should render_template('new')
       end
-    end
-  end 
+    end # describe "failure" do
   
+    ##########
+    # SUCCESS
+    ###########
+    describe "success" do
+
+      before(:each) do
+        @attr = { :name => "New User", :email => "user@example.com",
+                  :password => "foobar", :password_confirmation => "foobar" }
+      end
+
+      it "should create a user" do
+        lambda do
+          post :create, :user => @attr
+        end.should change(User, :count).by(1)
+      end
+      
+      it "should redirect to the user show page" do
+        post :create, :user => @attr
+        response.should redirect_to(user_path(assigns(:user)))
+      end
+      
+      it "should have a welcome message" do
+          post :create, :user => @attr
+          flash[:success].should =~ /welcome to the sample app/i
+      end
+      
+    end # describe "success" do
+  end # end describe "POST 'create'" do
+
+
 end
