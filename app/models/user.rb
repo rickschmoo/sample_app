@@ -9,8 +9,11 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
-require 'digest'
+require 'digest' 
 
+##############
+# USER MODEL
+##############
 class User < ActiveRecord::Base
   attr_accessor :password # virtual password attribute (not mapping to a database column)
   attr_accessible :name, :email, :password, :password_confirmation
@@ -47,6 +50,14 @@ class User < ActiveRecord::Base
     return user if user.has_password?(submitted_password) # password match!
     # else returns nil by default if no password match on valid user
   end
+  
+  def self.authenticate_with_salt(id, cookie_salt)
+    # lookup user
+    user = find_by_id(id)
+    #  verify that the salt stored in the cookie is the correct one for that user
+    (user && user.salt == cookie_salt) ? user : nil
+  end
+
   
   ##################
   # private classes
