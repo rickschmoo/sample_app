@@ -35,6 +35,14 @@ Spork.prefork do
     # Emulate initializer set_clear_dependencies_hook in
     # railties/lib/rails/application/bootstrap.rb
     ActiveSupport::Dependencies.clear
+    
+    #########################################################
+    # RB: setup support for signing in a user in a spec test
+    #########################################################
+    def test_sign_in(user)
+      controller.sign_in(user) # controller object is available to rails tests
+    end
+    
   end
   
 end
