@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # show signup form
   ###################
   def new
-    @user = User.new
+    @user = User.new 
     @title = "Sign up" 
   end
 

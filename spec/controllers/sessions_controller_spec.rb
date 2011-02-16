@@ -32,7 +32,7 @@ describe SessionsController do
 
       before(:each) do
         @user = Factory(:user)
-        @attr = { :email => @user.email, :password => @user.password }
+        @attr = { :email => @user.email, :password => @user.password } 
       end
 
       # uses controller object, available inside rails tests PROB
