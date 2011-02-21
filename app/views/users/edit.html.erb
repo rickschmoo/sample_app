@@ -1,4 +1,4 @@
-<h1>Sign up</h1>
+<h1>Edit user</h1>
 
 <!-- iterate through the form -->
 <%= form_for(@user) do |f| %>
@@ -25,7 +25,12 @@
 	</div>
 	
 	<div class="actions">
-		<%= f.submit "Sign up" %>
+		<%= f.submit "Update" %>
 	</div>
 	
 <% end %>
+
+<div>
+	<%= gravatar_for @user %>
+	<a href="http://gravatar.com/emails">change</a>
+</div>

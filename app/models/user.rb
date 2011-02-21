@@ -17,6 +17,7 @@ require 'digest'
 class User < ActiveRecord::Base
   attr_accessor :password # virtual password attribute (not mapping to a database column)
   attr_accessible :name, :email, :password, :password_confirmation
+  # note - admin boolean is not accessible via hash accessor techniques
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   

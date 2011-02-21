@@ -1,0 +1,16 @@
+<h1>All users</h1>
+
+<%= will_paginate %>
+
+<ul class="users">
+	
+	<!-- call _user.html.erb for each user automagically via @users -->
+	<%= render @users %>
+	
+	<!-- equivalent to: -->
+	<!-- @users.each do |user| %> -->
+	<!--	render user %> -->
+	<!--end %> -->
+</ul>
+
+<%= will_paginate %>
